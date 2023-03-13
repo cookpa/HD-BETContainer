@@ -1,16 +1,15 @@
-FROM python:3.8.12-buster as builder
+FROM python:3.8.16-buster as builder
 
 COPY requirements.txt /opt/requirements/requirements.txt
 
 RUN apt-get update && \
     python3 -m venv /opt/venv && \
     . /opt/venv/bin/activate && \
+    python3 -m pip install --upgrade pip && \
     pip install --requirement /opt/requirements/requirements.txt && \
     mkdir -p /opt/src && \
     cd /opt/src && \
-    git clone https://github.com/MIC-DKFZ/HD-BET && \
-    cd /opt/src/HD-BET && \
-    git checkout 817a50d2fe9b8663646cc74652cb50e26f343a3b
+    git clone https://github.com/MIC-DKFZ/HD-BET
 
 # This ensures data gets downloaded to /opt/hd-bet_params and tells hd-bet where to
 # look for data
@@ -21,10 +20,11 @@ COPY cache_data.py /opt/scripts/cache_data.py
 
 RUN . /opt/venv/bin/activate && \
     cd /opt/src/HD-BET && \
+    pip install wheel && \
     pip install --no-deps . && \
     python /opt/scripts/cache_data.py
 
-FROM python:3.8.12-slim
+FROM python:3.8.16-slim-buster
 
 ENV VIRTUAL_ENV=/opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
