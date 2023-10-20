@@ -1,4 +1,4 @@
-FROM python:3.8.16-buster as builder
+FROM python:3.11-bookworm as builder
 
 COPY requirements.txt /opt/requirements/requirements.txt
 
@@ -24,7 +24,7 @@ RUN . /opt/venv/bin/activate && \
     pip install --no-deps . && \
     python /opt/scripts/cache_data.py
 
-FROM python:3.8.16-slim-buster
+FROM python:3.11-slim-bookworm
 
 ENV VIRTUAL_ENV=/opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
