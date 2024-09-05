@@ -20,7 +20,7 @@ nvidia-nccl-cu12==2.18.1
 nvidia-nvjitlink-cu12==12.2.140
 nvidia-nvtx-cu12==12.1.105
 packaging==23.2
-Pillow==10.1.0
+Pillow==10.3.0
 scikit-image==0.22.0
 scipy==1.11.3
 SimpleITK==2.3.0
