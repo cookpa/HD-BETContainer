@@ -1,4 +1,4 @@
-FROM python:3.11-bookworm as builder
+FROM python:3.11-bookworm AS builder
 
 COPY requirements.txt /opt/requirements/requirements.txt
 
