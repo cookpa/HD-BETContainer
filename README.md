@@ -26,9 +26,8 @@ To enable multi-threading, pass the environment variable `OMP_NUM_THREADS=N` at 
 
 ## GPU mode
 
-I have not tested the GPU on Docker. On Singularity, the GPU mode works well with
-`singularity run --nv`, and allows use of `-mode accurate -tta 1` for better results in
-less time than `-mode fast` requires on CPU.
+On Singularity, the GPU mode works well with `singularity run --nv`. I highly recommend
+using a GPU if possible. If running on the CPU, use multiple threads and `--disable_tta`.
 
 
 ## Citation
